@@ -1,0 +1,26 @@
+server:
+  servlet:
+    context-path: /redisCluster
+  port: 8080
+#spring相关配置
+spring:
+  application:
+    name: spring-boot.redis
+  datasource:
+    #数据源基本配置
+    username: root
+    password: zhuhao
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8  
+  #redis配置，配置两个redis主从复制 ，以spring开头[不能出现多个spring，这是一个大坑 ,要将所有spring开头的配置放在一起]
+  redis:
+    cluster:
+      nodes: 192.168.10.130:7001,192.168.10.130:7002,192.168.10.130:7003
+      max-redirects: 3
+    password:
+    jedis:
+      pool:
+        max-active: 500
+        max-idle: 50
+        min-idle: 20
+        max-wait: 2000
